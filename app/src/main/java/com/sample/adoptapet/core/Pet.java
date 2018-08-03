@@ -39,6 +39,10 @@ public class Pet {
     @Json(name = "friendlyWith")
     private List<String> friendlyList;
 
+    public Pet(String name) {
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }

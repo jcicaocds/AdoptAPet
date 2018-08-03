@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_pet_card_height"
+    android:layout_margin="@dimen/item_pet_card_margin"
+    app:cardBackgroundColor="@color/item_pet_card_background"
+    app:cardCornerRadius="@dimen/cardview_default_radius">
+
+    <TextView
+        android:id="@+id/item_pet_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        tools:text="@string/item_pet_name_example" />
+
+</android.support.v7.widget.CardView>

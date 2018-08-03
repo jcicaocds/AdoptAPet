@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">AdoptAPet</string>
+    <string name="app_name">Adopt A Pet</string>
+
+    <string name="item_pet_name_example">Pet Name</string>
 </resources>
