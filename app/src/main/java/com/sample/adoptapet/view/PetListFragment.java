@@ -9,15 +9,20 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.sample.adoptapet.R;
 import com.sample.adoptapet.core.Pet;
+import com.sample.adoptapet.core.PetListPresenter;
+import com.sample.adoptapet.core.PetListView;
+import com.sample.adoptapet.presenter.PetListPresenterImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class PetListFragment extends Fragment {
+public class PetListFragment extends Fragment implements PetListView {
 
+    private ProgressBar progressBar;
     private RecyclerView recyclerView;
     private PetListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
@@ -42,6 +47,7 @@ public class PetListFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        progressBar = view.findViewById(R.id.pet_list_progress_bar);
         recyclerView = view.findViewById(R.id.pet_list_recycler);
         recyclerView.setHasFixedSize(true);
 
@@ -49,14 +55,23 @@ public class PetListFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new PetListAdapter(getContext());
-
-        List<Pet> pets = new ArrayList<>();
-        for (int i = 0; i < 20; i++) {
-            Pet pet = new Pet("Pet #" + i);
-            pets.add(pet);
-        }
-        adapter.setPets(pets);
-
         recyclerView.setAdapter(adapter);
+
+        PetListPresenter presenter = new PetListPresenterImpl(this);
+        presenter.getPets();
+
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void loadPets(List<Pet> pets) {
+        adapter.setPets(pets);
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showError() {
+        Toast.makeText(getContext(), getString(R.string.pet_list_generic_error)
+                , Toast.LENGTH_SHORT).show();
     }
 }

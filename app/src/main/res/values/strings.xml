@@ -2,4 +2,5 @@
     <string name="app_name">Adopt A Pet</string>
 
     <string name="item_pet_name_example">Pet Name</string>
+    <string name="pet_list_generic_error">Error al cargar las mascotas</string>
 </resources>
