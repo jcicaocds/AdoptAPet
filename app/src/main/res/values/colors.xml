@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#E5625C</color>
+    <color name="colorPrimaryDark">#E0413A</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="backgroundColor">@android:color/white</color>
 
+
+    <!--Card item-->
     <color name="item_pet_card_background">@android:color/white</color>
     <color name="item_pet_text_color">@android:color/black</color>
+
+    <!--Pet Detail-->
+    <color name="pet_detail_primary_text">@android:color/black</color>
+    <color name="pet_detail_secondary_text">#BBBBBC</color>
+    <color name="pet_detail_tertiary_text">#696969</color>
+    <color name="pet_detail_divider">#F2F2F2</color>
+    <color name="pet_detail_placeholder">#F6F9FC</color>
+    <color name="pet_detail_button">#748FE4</color>
+
 </resources>

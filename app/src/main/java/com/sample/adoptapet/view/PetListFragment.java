@@ -26,9 +26,14 @@ public class PetListFragment extends Fragment implements PetListView, OnItemClic
     private RecyclerView recyclerView;
     private PetListAdapter adapter;
     private RecyclerView.LayoutManager layoutManager;
+    private PetListPresenter presenter;
 
     public PetListFragment() {
-        // Required empty public constructor
+        presenter = new PetListPresenterImpl(this);
+    }
+
+    public PetListPresenter getPresenter() {
+        return presenter;
     }
 
     @Override
@@ -57,7 +62,6 @@ public class PetListFragment extends Fragment implements PetListView, OnItemClic
         adapter = new PetListAdapter(getContext(), this);
         recyclerView.setAdapter(adapter);
 
-        PetListPresenter presenter = new PetListPresenterImpl(this);
         presenter.getPets();
 
         progressBar.setVisibility(View.VISIBLE);
@@ -71,7 +75,7 @@ public class PetListFragment extends Fragment implements PetListView, OnItemClic
 
     @Override
     public void onItemClick(Pet pet) {
-        ((MainActivity) getActivity()).showPetDetailFragment();
+        ((MainActivity) getActivity()).showPetDetailFragment(pet);
     }
 
     @Override

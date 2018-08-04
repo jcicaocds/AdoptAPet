@@ -3,4 +3,17 @@
     <dimen name="item_pet_card_height">120dp</dimen>
     <dimen name="item_pet_card_margin">5dp</dimen>
     <dimen name="item_pet_name_padding">5dp</dimen>
+
+    <!--Pet detail-->
+    <dimen name="pen_detail_title_text_size">24sp</dimen>
+    <dimen name="pen_detail_subtitle_text_size">18sp</dimen>
+    <dimen name="pet_detail_text_size">18sp</dimen>
+    <dimen name="pen_detail_margin">15dp</dimen>
+    <dimen name="pen_detail_margin_title_top">15dp</dimen>
+    <dimen name="pen_detail_margin_image_top">15dp</dimen>
+    <dimen name="pen_detail_margin_top">30dp</dimen>
+    <dimen name="pen_detail_margin_bottom">10dp</dimen>
+    <dimen name="pen_detail_adopt_text_size">18sp</dimen>
+    <dimen name="pen_detail_tag_margin_top">10sp</dimen>
+    <dimen name="pen_detail_tag_container_margin">5sp</dimen>
 </resources>

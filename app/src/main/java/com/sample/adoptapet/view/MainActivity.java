@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.sample.adoptapet.R;
+import com.sample.adoptapet.core.Pet;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,8 +30,9 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    public void showPetDetailFragment() {
+    public void showPetDetailFragment(Pet pet) {
         PetDetailFragment petDetailFragment = new PetDetailFragment();
+        petDetailFragment.getPresenter().getPetInformation(pet);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.main_content, petDetailFragment);
         fragmentTransaction.addToBackStack(null);
