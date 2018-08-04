@@ -7,8 +7,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.sample.adoptapet.R;
 import com.sample.adoptapet.core.Pet;
 
@@ -40,9 +43,18 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pet pet = pets.get(position);
-        String petName = pet.getName();
 
+        String petName = pet.getName();
         holder.textPetName.setText(petName);
+
+        String photoUrl = pet.getProfilePicture();
+        RequestOptions options = new RequestOptions()
+                .placeholder(R.color.cardview_dark_background)
+                .centerCrop();
+        Glide.with(context)
+                .load(photoUrl)
+                .apply(options)
+                .into(holder.petPhoto);
     }
 
     @Override
@@ -51,11 +63,13 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        ImageView petPhoto;
         TextView textPetName;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textPetName = itemView.findViewById(R.id.item_pet_name);
+            petPhoto = itemView.findViewById(R.id.item_pet_photo);
         }
     }
 }

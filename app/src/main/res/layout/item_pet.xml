@@ -8,12 +8,27 @@
     app:cardBackgroundColor="@color/item_pet_card_background"
     app:cardCornerRadius="@dimen/cardview_default_radius">
 
-    <TextView
-        android:id="@+id/item_pet_name"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        tools:text="@string/item_pet_name_example" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/item_pet_photo"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/item_pet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/item_pet_name_padding"
+            android:textStyle="bold"
+            tools:text="@string/item_pet_name_example" />
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
