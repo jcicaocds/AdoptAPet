@@ -20,7 +20,7 @@ import com.sample.adoptapet.presenter.PetListPresenterImpl;
 
 import java.util.List;
 
-public class PetListFragment extends Fragment implements PetListView {
+public class PetListFragment extends Fragment implements PetListView, OnItemClickListener {
 
     private ProgressBar progressBar;
     private RecyclerView recyclerView;
@@ -54,7 +54,7 @@ public class PetListFragment extends Fragment implements PetListView {
         layoutManager = new GridLayoutManager(getContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new PetListAdapter(getContext());
+        adapter = new PetListAdapter(getContext(), this);
         recyclerView.setAdapter(adapter);
 
         PetListPresenter presenter = new PetListPresenterImpl(this);
@@ -67,6 +67,12 @@ public class PetListFragment extends Fragment implements PetListView {
     public void loadPets(List<Pet> pets) {
         adapter.setPets(pets);
         progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void onItemClick(Pet pet) {
+        Toast.makeText(getContext(), "My name is " + pet.getName(), Toast.LENGTH_SHORT)
+                .show();
     }
 
     @Override

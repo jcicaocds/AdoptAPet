@@ -22,10 +22,12 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
 
     private Context context;
     private List<Pet> pets;
+    private final OnItemClickListener listener;
 
-    public PetListAdapter(Context context) {
+    public PetListAdapter(Context context, OnItemClickListener listener) {
         this.context = context;
         this.pets = new ArrayList<>();
+        this.listener = listener;
     }
 
     public void setPets(List<Pet> pets) {
@@ -43,7 +45,7 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Pet pet = pets.get(position);
-
+        bindListener(holder, pet);
         String petName = pet.getName();
         holder.textPetName.setText(petName);
 
@@ -55,6 +57,16 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
                 .load(photoUrl)
                 .apply(options)
                 .into(holder.petPhoto);
+
+    }
+
+    private void bindListener(ViewHolder viewHolder, final Pet pet) {
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.onItemClick(pet);
+            }
+        });
     }
 
     @Override
@@ -71,5 +83,6 @@ public class PetListAdapter extends RecyclerView.Adapter<PetListAdapter.ViewHold
             textPetName = itemView.findViewById(R.id.item_pet_name);
             petPhoto = itemView.findViewById(R.id.item_pet_photo);
         }
+
     }
 }
