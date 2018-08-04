@@ -12,5 +12,8 @@
     <string name="pet_detail_adopt">Adoptar</string>
     <string name="pet_detail_friendly">Amigable con</string>
     <string name="pet_detail_generic_error">Error al cargar el perfil</string>
+    <string name="pet_detail_hint_email">Correo</string>
+    <string name="pet_detail_hint_message">Mensaje</string>
+    <string name="pet_detail_dialog_message">Ingrese su mail</string>
 
 </resources>

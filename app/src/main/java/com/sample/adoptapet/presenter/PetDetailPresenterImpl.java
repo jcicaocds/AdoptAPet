@@ -41,6 +41,11 @@ public class PetDetailPresenterImpl implements PetDetailPresenter {
     }
 
     @Override
+    public void adopt(String email, String message) {
+        // TODO: 4/8/18 Call adopt service
+    }
+
+    @Override
     public Pet getCurrentPet() {
         return currentPet;
     }

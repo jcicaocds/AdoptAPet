@@ -1,14 +1,18 @@
 package com.sample.adoptapet.view;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.PluralsRes;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +40,7 @@ public class PetDetailFragment extends Fragment implements PetDetailView {
     private TextView sexTextView;
     private ImageView detailPhotoImageView;
     private TagGroup friendlyTagGroup;
+    private Button adoptPetButton;
 
     public PetDetailFragment() {
         presenter = new PetDetailPresenterImpl(this);
@@ -68,7 +73,41 @@ public class PetDetailFragment extends Fragment implements PetDetailView {
         sexTextView = view.findViewById(R.id.pet_detail_sex_text_value);
         detailPhotoImageView = view.findViewById(R.id.pet_detail_photo);
         friendlyTagGroup = view.findViewById(R.id.friendly_tag_group);
+        adoptPetButton = view.findViewById(R.id.pet_detail_adopt_button);
 
+        adoptPetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createAdoptDialog();
+            }
+        });
+
+    }
+
+    private void createAdoptDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext(), R.style.AppDialog);
+        builder.setTitle(getResources().getString(R.string.pet_detail_dialog_message));
+        View viewInflated = LayoutInflater.from(getContext()).inflate(R.layout.dialog_adopt, (ViewGroup) getView(), false);
+        final EditText emailEditText = viewInflated.findViewById(R.id.dialog_adopt_email);
+        final EditText messageEditText = viewInflated.findViewById(R.id.dialog_adopt_message);
+        builder.setView(viewInflated);
+        builder.setPositiveButton(R.string.pet_detail_adopt, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String email = emailEditText.getText().toString();
+                String message = messageEditText.getText().toString();
+                if (!email.isEmpty() && !message.isEmpty()) {
+                    presenter.adopt(email, message);
+                }
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override

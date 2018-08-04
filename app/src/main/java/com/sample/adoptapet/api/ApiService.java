@@ -15,4 +15,5 @@ public interface ApiService {
 
     @GET("/api/pets/{pet_id}")
     Call<Pet> getPet(@Path("pet_id") String petId);
+
 }
