@@ -5,4 +5,5 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="item_pet_card_background">@android:color/white</color>
+    <color name="item_pet_text_color">@android:color/black</color>
 </resources>

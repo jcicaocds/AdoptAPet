@@ -3,8 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@android:color/white"
     tools:context="com.sample.adoptapet.view.MainActivity">
+
+    <include android:id="@+id/app_bar"
+        layout="@layout/app_bar"/>
 
     <FrameLayout
         android:id="@+id/main_content"

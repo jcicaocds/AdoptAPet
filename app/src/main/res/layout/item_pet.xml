@@ -27,6 +27,7 @@
             android:gravity="center"
             android:padding="@dimen/item_pet_name_padding"
             android:textStyle="bold"
+            android:textColor="@color/item_pet_text_color"
             tools:text="@string/item_pet_name_example" />
 
     </LinearLayout>

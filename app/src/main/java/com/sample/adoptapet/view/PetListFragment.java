@@ -71,8 +71,7 @@ public class PetListFragment extends Fragment implements PetListView, OnItemClic
 
     @Override
     public void onItemClick(Pet pet) {
-        Toast.makeText(getContext(), "My name is " + pet.getName(), Toast.LENGTH_SHORT)
-                .show();
+        ((MainActivity) getActivity()).showPetDetailFragment();
     }
 
     @Override
@@ -80,4 +79,5 @@ public class PetListFragment extends Fragment implements PetListView, OnItemClic
         Toast.makeText(getContext(), getString(R.string.pet_list_generic_error)
                 , Toast.LENGTH_SHORT).show();
     }
+
 }
