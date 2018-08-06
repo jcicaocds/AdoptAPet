@@ -41,6 +41,7 @@ public class PetDetailFragment extends Fragment implements PetDetailView {
     private ImageView detailPhotoImageView;
     private TagGroup friendlyTagGroup;
     private Button adoptPetButton;
+    private DialogInterface dialogInterface;
 
     public PetDetailFragment() {
         presenter = new PetDetailPresenterImpl(this);
@@ -97,6 +98,7 @@ public class PetDetailFragment extends Fragment implements PetDetailView {
                 String email = emailEditText.getText().toString();
                 String message = messageEditText.getText().toString();
                 if (!email.isEmpty() && !message.isEmpty()) {
+                    dialogInterface = dialog;
                     presenter.adopt(email, message);
                 }
             }
@@ -130,6 +132,21 @@ public class PetDetailFragment extends Fragment implements PetDetailView {
                     .load(photoUrl)
                     .apply(options)
                     .into(detailPhotoImageView);
+        }
+    }
+
+    @Override
+    public void adoptState(boolean success) {
+        String message;
+        if (dialogInterface != null) {
+            dialogInterface.dismiss();
+            if (success) {
+                message = getString(R.string.pet_detail_adoption);
+            } else {
+                message = getString(R.string.pet_detail_adoption_error);
+            }
+            Toast.makeText(getContext(), message
+                    , Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -14,6 +14,8 @@
     <string name="pet_detail_generic_error">Error al cargar el perfil</string>
     <string name="pet_detail_hint_email">Correo</string>
     <string name="pet_detail_hint_message">Mensaje</string>
-    <string name="pet_detail_dialog_message">Ingrese su mail</string>
+    <string name="pet_detail_dialog_message">Adopción</string>
+    <string name="pet_detail_adoption">Mensaje enviado</string>
+    <string name="pet_detail_adoption_error">Error al enviar el mensaje</string>
 
 </resources>

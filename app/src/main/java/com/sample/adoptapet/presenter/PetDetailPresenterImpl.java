@@ -1,6 +1,7 @@
 package com.sample.adoptapet.presenter;
 
 import com.sample.adoptapet.api.Api;
+import com.sample.adoptapet.api.body.Contact;
 import com.sample.adoptapet.core.Pet;
 import com.sample.adoptapet.core.PetDetailPresenter;
 import com.sample.adoptapet.core.PetDetailView;
@@ -42,7 +43,22 @@ public class PetDetailPresenterImpl implements PetDetailPresenter {
 
     @Override
     public void adopt(String email, String message) {
-        // TODO: 4/8/18 Call adopt service
+        Contact contact = new Contact(email, message);
+        api.adoptService().adopt(currentPet.getId(), contact).enqueue(new Callback<Pet>() {
+            @Override
+            public void onResponse(Call<Pet> call, Response<Pet> response) {
+                if (response.isSuccessful()) {
+                    view.adoptState(true);
+                } else {
+                    view.adoptState(false);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Pet> call, Throwable t) {
+                view.showError();
+            }
+        });
     }
 
     @Override
